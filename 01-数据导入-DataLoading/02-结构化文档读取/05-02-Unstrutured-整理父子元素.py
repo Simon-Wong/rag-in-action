@@ -26,3 +26,4 @@ for item in docs:
         print(f'{item.metadata["category"]}: {item.page_content}')
     print("-" * 80)
 
+#这个代码有问题，这个链接跑不了，得梯子，之后调试发现parent是None。

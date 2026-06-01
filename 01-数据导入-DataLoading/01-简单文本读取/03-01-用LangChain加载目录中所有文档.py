@@ -38,6 +38,12 @@ import nltk
 nltk.download('averaged_perceptron_tagger') 
 nltk.download('punkt') 
 """
+
+#爬梯，加下面三行代码，运行时会下载很多东西，2个包，1个yolo模型
+import nltk
+nltk.download('averaged_perceptron_tagger') 
+nltk.download('punkt') 
+
 import os
 from langchain_community.document_loaders import DirectoryLoader
 
@@ -47,7 +53,19 @@ print(f"获取当前脚本文件所在的目录：{script_dir}")
 # 结合相对路径构建完整路径
 data_dir = os.path.join(script_dir, '../../90-文档-Data/黑悟空')
 
-loader = DirectoryLoader(data_dir)
+
+
+loader = DirectoryLoader(data_dir,show_progress=True,use_multithreading=True)
+
+#loader = DirectoryLoader(data_dir,show_progress=True,use_multithreading=True,glob="*.md")
+
+#from langchain_community.document_loaders import TextLoader 
+#loader = DirectoryLoader(data_dir,show_progress=True,use_multithreading=True,glob="*.md",loader_cls=TextLoader)
+
+#from langchain_community.document_loaders import TextLoader 
+#loader = DirectoryLoader(data_dir,show_progress=True,use_multithreading=True,loader_cls=TextLoader,silent_errors=True)
+
+
 docs = loader.load()
 print(f"文档数：{len(docs)}")  # 输出文档总数
 print(docs[0])  # 输出第一个文档

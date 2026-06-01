@@ -6,9 +6,9 @@ loader = UnstructuredMarkdownLoader(markdown_path)
 
 data = loader.load()
 print(data[0].page_content[:250])
-
+print("="*30)
 loader = UnstructuredMarkdownLoader(markdown_path, mode="elements")
 data = loader.load()
-print(f"Number of documents: {len(data)}\n")
+print(f"Number of documents: {len(data)}\n")#每一个行、段落、标题，都会被认为是一个元素，但忽略图片
 for document in data:
     print(f"{document}\n")
