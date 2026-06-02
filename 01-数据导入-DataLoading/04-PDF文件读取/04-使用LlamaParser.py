@@ -15,3 +15,5 @@ nodes = node_parser.get_nodes_from_documents(documents)
 
 print(nodes)
 
+#这个需要KEY，否则报错
+#算了不看这个了

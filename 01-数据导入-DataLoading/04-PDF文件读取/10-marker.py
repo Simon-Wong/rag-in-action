@@ -28,3 +28,5 @@ if __name__=="__main__":
     convert_pdf_to_markdown(input_pdf_path,output_floder)
 
 
+#无法运行，提示没有batch_multiplier这么个参数
+

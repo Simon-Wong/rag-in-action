@@ -77,7 +77,7 @@ def analyze_layout(docs):
             # 构建元素信息
             element = {
                 'type': doc.metadata.get('category'),
-                'content': (doc.page_content[:50] + '...') if len(doc.page_content) > 50 else doc.page_content,
+                'content': (doc.page_content[:100] + '...') if len(doc.page_content) > 50 else doc.page_content,
                 'position': {
                     'x1': x1, 'y1': y1,
                     'x2': x2, 'y2': y2,
@@ -118,6 +118,9 @@ for doc in docs:
 for doc in cave6_docs:
     print(doc.page_content)
 
+#
+#这块代码有问题，应该用字典吧？external_docs用列表是不对的
+#
 external_docs = [] # 创建列表来存储外部链接的子文档
 parent_id = -1 # 初始化父ID为-1
 for doc in docs:
