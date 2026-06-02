@@ -1,5 +1,13 @@
 from llama_index.readers.database import DatabaseReader
 
+#apt安装mysql
+#
+#执行
+#sudo mysql
+#
+#执行下面的：
+
+
 # 数据库创建和表结构说明：
 # 1. 创建数据库: CREATE DATABASE example_db;
 # 2. 使用数据库: USE example_db;
@@ -20,6 +28,19 @@ from llama_index.readers.database import DatabaseReader
 #      ('火焰山', '炙热难耐的火山地带，充满岩浆与烈焰', 4, '牛魔王'),
 #      ('龙宫', '东海龙王的宫殿，水下奇景', 3, '敖广'),
 #      ('灵山', '如来佛祖居住的圣地，佛光普照', 5, '如来佛祖');
+
+
+#执行下面的：
+# CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+# GRANT ALL PRIVILEGES ON example_db.* TO 'newuser'@'localhost';
+# FLUSH PRIVILEGES;
+# SHOW DATABASES;
+# exti;
+#用新用户登录，进行验证
+# mysql -u newuser -p
+# use example_db;
+# show tables;
+# select * from game_scenes;
 
 reader = DatabaseReader(
     scheme="mysql",
