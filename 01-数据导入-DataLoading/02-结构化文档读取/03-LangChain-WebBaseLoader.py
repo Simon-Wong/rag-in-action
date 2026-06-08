@@ -32,3 +32,5 @@ assert len(docs) == 1
 doc = docs[0]
 print(f"{doc.metadata}\n")
 print(doc.page_content)
+print('='*20)
+print(docs)

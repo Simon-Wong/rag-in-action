@@ -69,3 +69,4 @@ loader = DirectoryLoader(data_dir,show_progress=True,use_multithreading=True)
 docs = loader.load()
 print(f"文档数：{len(docs)}")  # 输出文档总数
 print(docs[0])  # 输出第一个文档
+print(docs)  # 输出第一个文档

@@ -14,7 +14,10 @@ from unstructured.partition.ppt import partition_ppt
 ppt_elements = partition_ppt(filename="90-文档-Data/黑悟空/黑神话悟空.pptx")
 print("PPT 内容：")
 for element in ppt_elements:
+    print(element.metadata)
     print(element.text)
+    
+print('='*20)
     
 from langchain_core.documents import Document
 # 转换为 Documents 数据结构

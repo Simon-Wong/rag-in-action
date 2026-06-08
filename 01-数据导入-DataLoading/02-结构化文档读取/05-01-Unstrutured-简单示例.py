@@ -6,3 +6,5 @@ docs = loader.load()
 for doc in docs[:5]:
     print(f'{doc.metadata["category"]}: {doc.page_content}')
 
+print('='*20)
+print(docs)
