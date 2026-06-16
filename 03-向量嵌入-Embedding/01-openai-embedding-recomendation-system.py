@@ -13,14 +13,23 @@ with open("90-文档-Data/灭神纪/游戏说明.json", "r") as f:
     game_descriptions = json.load(f)
 
 # 定义函数获取嵌入向量
-def get_embedding(text, model="text-embedding-3-small"):
-    response = openai.embeddings.create(
-        input=[text],
-        model=model
-    )
-    return response.data[0].embedding
+# def get_embedding(text, model="text-embedding-3-small"):
+#     response = openai.embeddings.create(
+#         input=[text],
+#         model=model
+#     )
+#     return response.data[0].embedding
 
-# 获取所有游戏的嵌入向量
+import ollama
+client = ollama.Client(host="http://192.168.0.109:11434")
+
+def get_embedding(text, model="nomic-embed-text:latest"):
+    response = client.embeddings(model="nomic-embed-text:latest",
+                                prompt=text
+                                )
+    return response["embedding"]
+
+# 获取所有游戏的嵌入向量（游戏描述的嵌入向量）
 unique_games = df['game_title'].unique().tolist()
 target_game = "Killing God: Hu Sun"  # 目标游戏名称更改
 if target_game not in unique_games:

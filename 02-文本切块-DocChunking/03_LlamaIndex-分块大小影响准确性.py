@@ -10,8 +10,25 @@ load_dotenv()
 
 import os
 
-embed_model = OpenAIEmbedding(model="text-embedding-3-small")
-llm = OpenAI(model="gpt-3.5-turbo-0125")
+# embed_model = OpenAIEmbedding(model="text-embedding-3-small")
+# llm = OpenAI(model="gpt-3.5-turbo-0125")
+
+# 1. Embedding
+from llama_index.core import Settings
+from llama_index.embeddings.ollama import OllamaEmbedding
+from llama_index.llms.ollama import Ollama
+# 1. 配置 Embedding 模型
+embed_model = OllamaEmbedding(
+    model_name="nomic-embed-text",   # 确保与 Ollama 下载的模型名完全一致
+    base_url="http://192.168.0.107:11434",  # Ollama 服务地址
+)
+
+# 2. 配置 LLM 模型
+llm = Ollama(
+    model="qwen3.5:9b",                # 确保与 Ollama 下载的模型名完全一致
+    base_url="http://192.168.0.107:11434",  # Ollama 服务地址
+    request_timeout=120.0,           # (可选) 设置请求超时，单位秒
+)
 
 Settings.embed_model = embed_model
 Settings.llm = llm

@@ -8,11 +8,20 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 # embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-zh")
 documents = SimpleDirectoryReader(input_files=["90-文档-Data/黑悟空/黑悟空wiki.txt"]).load_data()
 
+from llama_index.core import Settings
+from llama_index.embeddings.ollama import OllamaEmbedding
+from llama_index.llms.ollama import Ollama
+# 1. 配置 Embedding 模型
+embed_model = OllamaEmbedding(
+    model_name="nomic-embed-text",   # 确保与 Ollama 下载的模型名完全一致
+    base_url="http://192.168.0.107:11434",  # Ollama 服务地址
+)
+
 # 创建语义分块器
 splitter = SemanticSplitterNodeParser(
     buffer_size=3,  # 缓冲区大小
     breakpoint_percentile_threshold=90, # 断点百分位阈值
-    embed_model=OpenAIEmbedding()     # 使用的嵌入模型
+    embed_model=embed_model     # 使用的嵌入模型
 )
 # 创建基础句子分块器（作为对照）
 base_splitter = SentenceSplitter(
@@ -50,11 +59,11 @@ for i, node in enumerate(semantic_nodes, 1):
     print(f"内容:\n{node.text}")
     print("-" * 50)
 
-# 使用基础句子分块器对文档进行分块
-base_nodes = base_splitter.get_nodes_from_documents(documents)
-print("\n=== 基础句子分块结果 ===")
-print(f"基础句子分块器生成的块数：{len(base_nodes)}")
-for i, node in enumerate(base_nodes, 1):
-    print(f"\n--- 第 {i} 个句子块 ---")
-    print(f"内容:\n{node.text}")
-    print("-" * 50)
+# # 使用基础句子分块器对文档进行分块
+# base_nodes = base_splitter.get_nodes_from_documents(documents)
+# print("\n=== 基础句子分块结果 ===")
+# print(f"基础句子分块器生成的块数：{len(base_nodes)}")
+# for i, node in enumerate(base_nodes, 1):
+#     print(f"\n--- 第 {i} 个句子块 ---")
+#     print(f"内容:\n{node.text}")
+#     print("-" * 50)
