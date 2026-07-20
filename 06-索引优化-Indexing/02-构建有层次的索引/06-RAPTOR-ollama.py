@@ -239,3 +239,46 @@ if __name__ == "__main__":
     print("--- 最终检索结果 ---")
     for i, res in enumerate(results, 1):
         print(f"{i}. {res}")
+
+'''
+(venv-rag-langchain) thbytwo@thbytwopower:~/testGit/rag-in-action$ /home/thbytwo/miniforge3/envs/venv-rag-langchain/bin/python /home/thbytwo/testGit/rag-in-action/06-索引优化-Indexing/02-构建有层次的索引/06-RAPTOR-ollama.py
+/home/thbytwo/testGit/rag-in-action/06-索引优化-Indexing/02-构建有层次的索引/06-RAPTOR-ollama.py:15: LangChainDeprecationWarning: The class `OllamaEmbeddings` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaEmbeddings``.
+  embed_model = OllamaEmbeddings(
+/home/thbytwo/testGit/rag-in-action/06-索引优化-Indexing/02-构建有层次的索引/06-RAPTOR-ollama.py:22: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(
+=== 开始构建RAPTOR多层索引 ===
+[第0层] 共9个文本块，聚为3个摘要节点，进入上一层
+[第1层] 共3个文本块，聚为2个摘要节点，进入上一层
+=== 索引构建完成 ===
+
+
+=== RAPTOR 索引树各层内容概览 ===
+
+第 0 层（共9个节点）：
+  [0] 花果山位于东胜神洲傲来国境内，是一块灵气汇聚的仙山，相传是开天辟地时就存在的灵脉。...
+  [1] 花果山上终年不谢的奇花异草遍布，山泉瀑布四季长流，还有茂密的千年古树森林，生态极佳。...
+  [2] 花果山里有仙果园种植灵果、平坦的练功场、猴族休憩区三个特殊区域，各有不同功能。...
+  [3] 水帘洞入口是一道高30丈的天然瀑布，隐藏在花果山之巅，普通人很难发现洞口位置。...
+  [4] 水帘洞内部是错综复杂的洞穴系统，分为修炼大厅、藏宝室、议事厅三个核心功能区。...
+  [5] 水帘洞的藏宝室有天然防护阵法加持，普通妖法无法攻破，专门存放法宝和丹药。...
+  [6] 东海龙宫是建在东海海底的宏伟宫殿群，整体用珊瑚和夜明珠搭建，占地数十里。...
+  [7] 龙宫的龙王宝库储存着无数珍宝，包括夜明珠、定海神针等上古神器，是龙宫核心重地。...
+  [8] 龙宫兵器库收藏了各式水系法器和神兵利器，是水族将领领取装备的地方。...
+
+第 1 层（共3个节点）：
+  [0] 花果山是东胜神洲傲来国境内的一块灵气汇聚的仙山。该地拥有终年不谢的奇花异草、茂密的千年古树森林和生态极佳的环境。花果山设...
+  [1] 水帘洞内部设有三大核心功能区：修炼大厅、藏宝室和议事厅。藏宝室内拥有天然防护阵法，加持使普通妖法无法攻破，存放着法宝和丹...
+  [2] 东海龙宫是位于东海海底的一座宏伟宫殿群，主体结构由珊瑚和夜明珠搭建而成。宫内的龙王宝库储存着无数珍贵的神器，如夜明珠和定...
+
+第 2 层（共2个节点）：
+  [0] 花果山是东胜神洲的一块特殊地带，拥有终年不谢的奇花异草、茂密的千年古树森林和生态极佳的环境。该地设有三个区域：仙果园种植...
+  [1] 东海龙宫是一个宏伟的宫殿群，位于东海海底。其内部设有三大核心功能区：修炼大厅、藏宝室和议事厅。藏宝室内拥有天然防护阵法，...
+
+==================================================
+用户查询：水帘洞里存放宝物的地方有什么防护？
+--- 分层检索路径 ---
+[第2层（顶层总览）] 开始主题匹配
+--- 最终检索结果 ---
+1. 花果山是东胜神洲的一块特殊地带，拥有终年不谢的奇花异草、茂密的千年古树森林和生态极佳的环境。该地设有三个区域：仙果园种植灵果、练功场和猴族休憩区。水帘洞入口是一道高30丈的天然瀑布，隐藏在山巅，普通人很难发现。
+2. 东海龙宫是一个宏伟的宫殿群，位于东海海底。其内部设有三大核心功能区：修炼大厅、藏宝室和议事厅。藏宝室内拥有天然防护阵法，加持使普通妖法无法攻破，存放着法宝和丹药。
+'''
